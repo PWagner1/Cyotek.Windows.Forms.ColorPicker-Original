@@ -11,6 +11,7 @@
 
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Cyotek.Windows.Forms.ColorPicker.Tests
 {
@@ -32,7 +33,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = PaletteSerializer.DefaultOpenFilter;
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -48,7 +49,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = PaletteSerializer.DefaultSaveFilter;
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -72,7 +73,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.ReadInt16(stream);
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -98,7 +99,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.ReadInt32(stream);
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -126,7 +127,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       }
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -156,7 +157,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       }
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     #endregion

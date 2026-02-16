@@ -4,6 +4,7 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <RootNamespace>Cyotek.Windows.Forms.ColorPicker.Demo</RootNamespace>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
@@ -29,8 +30,8 @@
 
   <ItemGroup>
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
-    <PackageReference Include="HtmlRenderer.Core" Version="1.5.0.6" />
-    <PackageReference Include="HtmlRenderer.WinForms" Version="1.5.0.6" />
+    <PackageReference Include="HtmlRenderer.Core" Version="1.5.2" />
+    <PackageReference Include="HtmlRenderer.WinForms" Version="1.5.2" />
   </ItemGroup>
 
   <ItemGroup>

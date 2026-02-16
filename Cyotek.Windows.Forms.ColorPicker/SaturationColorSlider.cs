@@ -9,182 +9,174 @@
 // Found this code useful?
 // https://www.cyotek.com/contribute
 
-namespace Cyotek.Windows.Forms
+namespace Cyotek.Windows.Forms;
+
+/// <summary>
+/// Represents a control for selecting the saturation of a color
+/// </summary>
+public class SaturationColorSlider : ColorSlider
 {
-  /// <summary>
-  /// Represents a control for selecting the saturation of a color
-  /// </summary>
-  public class SaturationColorSlider : ColorSlider
+  #region Private Fields
+
+  private static readonly object EventColorChanged = new();
+
+  private Brush? _cellBackgroundBrush;
+
+  private Color _color;
+
+  #endregion Private Fields
+
+  #region Public Constructors
+
+  public SaturationColorSlider()
   {
-    #region Private Fields
-
-    private static readonly object _eventColorChanged = new();
-
-    private Brush _cellBackgroundBrush;
-
-    private Color _color;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    public SaturationColorSlider()
-    {
-      this.BarStyle = ColorBarStyle.TwoColor;
-      this.Color = Color.Black;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Events
-
-    [Category("Property Changed")]
-    public event EventHandler ColorChanged
-    {
-      add { this.Events.AddHandler(_eventColorChanged, value); }
-      remove { this.Events.RemoveHandler(_eventColorChanged, value); }
-    }
-
-    #endregion Public Events
-
-    #region Public Properties
-
-    [Browsable(false)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public override ColorBarStyle BarStyle
-    {
-      get { return base.BarStyle; }
-      set { base.BarStyle = value; }
-    }
-
-    [Category("Appearance")]
-    [DefaultValue(typeof(Color), "Black")]
-    public virtual Color Color
-    {
-      get { return _color; }
-      set
-      {
-        if (this.Color != value)
-        {
-          _color = value;
-
-          this.OnColorChanged(EventArgs.Empty);
-        }
-      }
-    }
-
-    [Browsable(false)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public override Color Color1
-    {
-      get { return base.Color1; }
-      set { base.Color1 = value; }
-    }
-
-    [Browsable(false)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public override Color Color2
-    {
-      get { return base.Color2; }
-      set { base.Color2 = value; }
-    }
-
-    [Browsable(false)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public override Color Color3
-    {
-      get { return base.Color3; }
-      set { base.Color3 = value; }
-    }
-
-    [Browsable(false)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public override float Maximum
-    {
-      get { return base.Maximum; }
-      set { base.Maximum = value; }
-    }
-
-    [Browsable(false)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public override float Minimum
-    {
-      get { return base.Minimum; }
-      set { base.Minimum = value; }
-    }
-
-    public override float Value
-    {
-      get { return base.Value; }
-      set { base.Value = (int)value; }
-    }
-
-    #endregion Public Properties
-
-    #region Protected Methods
-
-    protected virtual void CreateScale()
-    {
-      HslColor color;
-
-      color = new HslColor(this.Color);
-
-      color.S = 0;
-      this.Color1 = color.ToRgbColor();
-
-      color.S = 1;
-      this.Color2 = color.ToRgbColor();
-    }
-
-    protected virtual Brush CreateTransparencyBrush()
-    {
-      return new TextureBrush(ResourceManager.CellBackground, WrapMode.Tile);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-      if (disposing)
-      {
-        if (_cellBackgroundBrush != null)
-        {
-          _cellBackgroundBrush.Dispose();
-        }
-      }
-
-      base.Dispose(disposing);
-    }
-
-    /// <summary>
-    /// Raises the <see cref="ColorChanged" /> event.
-    /// </summary>
-    /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-    protected virtual void OnColorChanged(EventArgs e)
-    {
-      EventHandler handler;
-
-      this.CreateScale();
-      this.Invalidate();
-
-      handler = (EventHandler)this.Events[_eventColorChanged];
-
-      handler?.Invoke(this, e);
-    }
-
-    protected override void PaintBar(PaintEventArgs e)
-    {
-      if (this.Color.A != 255)
-      {
-        if (_cellBackgroundBrush == null)
-        {
-          _cellBackgroundBrush = this.CreateTransparencyBrush();
-        }
-
-        e.Graphics.FillRectangle(_cellBackgroundBrush, this.BarBounds);
-      }
-
-      base.PaintBar(e);
-    }
-
-    #endregion Protected Methods
+    BarStyle = ColorBarStyle.TwoColor;
+    Color = Color.Black;
   }
+
+  #endregion Public Constructors
+
+  #region Public Events
+
+  [Category("Property Changed")]
+  public event EventHandler ColorChanged
+  {
+    add => Events.AddHandler(EventColorChanged, value);
+    remove => Events.RemoveHandler(EventColorChanged, value);
+  }
+
+  #endregion Public Events
+
+  #region Public Properties
+
+  [Browsable(false)]
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public override ColorBarStyle BarStyle
+  {
+    get => base.BarStyle;
+    set => base.BarStyle = value;
+  }
+
+  [Category("Appearance")]
+  [DefaultValue(typeof(Color), "Black")]
+  public virtual Color Color
+  {
+    get => _color;
+    set
+    {
+      if (Color != value)
+      {
+        _color = value;
+
+        OnColorChanged(EventArgs.Empty);
+      }
+    }
+  }
+
+  [Browsable(false)]
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public override Color Color1
+  {
+    get => base.Color1;
+    set => base.Color1 = value;
+  }
+
+  [Browsable(false)]
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public override Color Color2
+  {
+    get => base.Color2;
+    set => base.Color2 = value;
+  }
+
+  [Browsable(false)]
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public override Color Color3
+  {
+    get => base.Color3;
+    set => base.Color3 = value;
+  }
+
+  [Browsable(false)]
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public override float Maximum
+  {
+    get => base.Maximum;
+    set => base.Maximum = value;
+  }
+
+  [Browsable(false)]
+  [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+  public override float Minimum
+  {
+    get => base.Minimum;
+    set => base.Minimum = value;
+  }
+
+  public override float Value
+  {
+    get => base.Value;
+    set => base.Value = (int)value;
+  }
+
+  #endregion Public Properties
+
+  #region Protected Methods
+
+  protected virtual void CreateScale()
+  {
+    var color = new HslColor(Color);
+
+    color.S = 0;
+    Color1 = color.ToRgbColor();
+
+    color.S = 1;
+    Color2 = color.ToRgbColor();
+  }
+
+  protected virtual Brush CreateTransparencyBrush()
+  {
+    return new TextureBrush(ResourceManager.CellBackground, WrapMode.Tile);
+  }
+
+  protected override void Dispose(bool disposing)
+  {
+    if (disposing)
+    {
+      if (_cellBackgroundBrush != null)
+      {
+        _cellBackgroundBrush.Dispose();
+      }
+    }
+
+    base.Dispose(disposing);
+  }
+
+  /// <summary>
+  /// Raises the <see cref="ColorChanged" /> event.
+  /// </summary>
+  /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+  protected virtual void OnColorChanged(EventArgs e)
+  {
+    CreateScale();
+    Invalidate();
+
+    var handler = (EventHandler)Events[EventColorChanged];
+
+    handler?.Invoke(this, e);
+  }
+
+  protected override void PaintBar(PaintEventArgs e)
+  {
+    if (Color.A != 255)
+    {
+      _cellBackgroundBrush ??= CreateTransparencyBrush();
+
+      e.Graphics.FillRectangle(_cellBackgroundBrush, BarBounds);
+    }
+
+    base.PaintBar(e);
+  }
+
+  #endregion Protected Methods
 }

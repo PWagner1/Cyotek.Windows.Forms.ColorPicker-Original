@@ -11,6 +11,7 @@
 
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Cyotek.Windows.Forms.ColorPicker.Tests
 {
@@ -35,7 +36,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.CanRead;
 
       // assert
-      Assert.IsTrue(actual);
+      ClassicAssert.IsTrue(actual);
     }
 
     [Test]
@@ -51,7 +52,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.CanWrite;
 
       // assert
-      Assert.IsTrue(actual);
+      ClassicAssert.IsTrue(actual);
     }
 
     [Test]
@@ -120,7 +121,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       File.Delete(workFileName);
 
       // assert
-      Assert.IsInstanceOf<GimpPaletteSerializer>(actual);
+      ClassicAssert.IsInstanceOf<GimpPaletteSerializer>(actual);
     }
 
     [Test]

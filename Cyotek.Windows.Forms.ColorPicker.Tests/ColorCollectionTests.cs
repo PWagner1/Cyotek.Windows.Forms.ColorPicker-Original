@@ -12,6 +12,7 @@
 using System;
 using System.Drawing;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Cyotek.Windows.Forms.ColorPicker.Tests
 {
@@ -72,7 +73,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = other == target;
 
       // assert
-      Assert.IsFalse(actual);
+      ClassicAssert.IsFalse(actual);
     }
 
     [Test]
@@ -88,7 +89,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.Equals(null);
 
       // assert
-      Assert.IsFalse(actual);
+      ClassicAssert.IsFalse(actual);
     }
 
     [Test]
@@ -106,7 +107,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.Equals(other);
 
       // assert
-      Assert.IsTrue(actual);
+      ClassicAssert.IsTrue(actual);
     }
 
     [Test]
@@ -124,7 +125,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.Equals(other);
 
       // assert
-      Assert.IsFalse(actual);
+      ClassicAssert.IsFalse(actual);
     }
 
     [Test]
@@ -142,8 +143,8 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = other == target;
 
       // assert
-      Assert.IsTrue(actual);
-      Assert.AreNotSame(target, other);
+      ClassicAssert.IsTrue(actual);
+      ClassicAssert.AreNotSame(target, other);
     }
 
     [Test]
@@ -161,8 +162,8 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = other == target;
 
       // assert
-      Assert.IsTrue(actual);
-      Assert.AreSame(target, other);
+      ClassicAssert.IsTrue(actual);
+      ClassicAssert.AreSame(target, other);
     }
 
     [Test]
@@ -183,7 +184,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.Find(Color.FromArgb(128, Color.CornflowerBlue), false);
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -204,7 +205,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.Find(Color.FromArgb(128, Color.CornflowerBlue), true);
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -225,7 +226,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.Find(Color.Yellow);
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -246,7 +247,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.Find(Color.FromArgb(100, 149, 237));
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     #endregion

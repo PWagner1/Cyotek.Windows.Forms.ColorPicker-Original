@@ -15,6 +15,7 @@ using System.Drawing;
 //using System.Linq;
 //using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Cyotek.Windows.Forms.ColorPicker.Tests
 {
@@ -47,7 +48,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
     {
       HslColor inHsl = originalColor;
       Color roundTrip = inHsl.ToRgbColor();
-      Assert.AreEqual(originalColor, roundTrip);
+      ClassicAssert.AreEqual(originalColor, roundTrip);
     }
   }
 }

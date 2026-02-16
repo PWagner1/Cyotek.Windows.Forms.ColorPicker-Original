@@ -15,6 +15,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Cyotek.Windows.Forms.ColorPicker.Tests
 {
@@ -39,7 +40,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.CanRead;
 
       // assert
-      Assert.IsTrue(actual);
+      ClassicAssert.IsTrue(actual);
     }
 
     [Test]
@@ -55,7 +56,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.CanWrite;
 
       // assert
-      Assert.IsFalse(actual);
+      ClassicAssert.IsFalse(actual);
     }
 
     [Test]
@@ -98,7 +99,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       File.Delete(workFileName);
 
       // assert
-      Assert.IsInstanceOf<InterleavedBitmapPaletteSerializer>(actual);
+      ClassicAssert.IsInstanceOf<InterleavedBitmapPaletteSerializer>(actual);
     }
 
     [Test]
@@ -115,7 +116,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       write = new MemoryStream();
 
       // act & assert
-      Assert.Throws<NotSupportedException>(() => target.Serialize(write, expected));
+      ClassicAssert.Throws<NotSupportedException>(() => target.Serialize(write, expected));
     }
 
     #endregion

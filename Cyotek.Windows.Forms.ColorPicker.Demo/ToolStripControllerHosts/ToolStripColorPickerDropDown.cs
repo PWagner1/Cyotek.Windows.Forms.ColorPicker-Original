@@ -161,7 +161,7 @@ namespace Cyotek.Windows.Forms.ToolStripControllerHosts
 
       info = this.Host.HitTest(e.Location);
 
-      if (info.Index != ColorGrid.InvalidIndex)
+      if (info.Index != ColorGrid.INVALID_INDEX)
       {
         this.Close(ToolStripDropDownCloseReason.ItemClicked);
 

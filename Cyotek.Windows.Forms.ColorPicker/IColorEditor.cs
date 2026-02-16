@@ -1,36 +1,34 @@
-namespace Cyotek.Windows.Forms
+namespace Cyotek.Windows.Forms;
+// Cyotek Color Picker controls library
+// Copyright © 2013-2017 Cyotek Ltd.
+// http://cyotek.com/blog/tag/colorpicker
+
+// Licensed under the MIT License. See license.txt for the full text.
+
+// If you use this code in your applications, donations or attribution are welcome
+
+/// <summary>
+/// Provides functionality required by color editors that are bindable
+/// </summary>
+[Obsolete("This interface will be removed in a future update.")]
+public interface IColorEditor
 {
-  // Cyotek Color Picker controls library
-  // Copyright © 2013-2017 Cyotek Ltd.
-  // http://cyotek.com/blog/tag/colorpicker
-
-  // Licensed under the MIT License. See license.txt for the full text.
-
-  // If you use this code in your applications, donations or attribution are welcome
+  #region Events
 
   /// <summary>
-  /// Provides functionality required by color editors that are bindable
+  /// Occurs when the <see cref="Color"/> property is changed.
   /// </summary>
-  [Obsolete("This interface will be removed in a future update.")]
-  public interface IColorEditor
-  {
-    #region Events
+  event EventHandler ColorChanged;
 
-    /// <summary>
-    /// Occurs when the <see cref="Color"/> property is changed.
-    /// </summary>
-    event EventHandler ColorChanged;
+  #endregion
 
-    #endregion
+  #region Properties
 
-    #region Properties
+  /// <summary>
+  /// Gets or sets the component color.
+  /// </summary>
+  /// <value>The component color.</value>
+  Color Color { get; set; }
 
-    /// <summary>
-    /// Gets or sets the component color.
-    /// </summary>
-    /// <value>The component color.</value>
-    Color Color { get; set; }
-
-    #endregion
-  }
+  #endregion
 }

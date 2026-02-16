@@ -1,31 +1,29 @@
-﻿namespace Cyotek.Windows.Forms
+namespace Cyotek.Windows.Forms;
+// Cyotek Color Picker controls library
+// Copyright © 2013-2017 Cyotek Ltd.
+// http://cyotek.com/blog/tag/colorpicker
+
+// Licensed under the MIT License. See license.txt for the full text.
+
+// If you use this code in your applications, donations or attribution are welcome
+
+/// <summary>
+/// Specifies the edit mode of a <see cref="ColorGrid" />.
+/// </summary>
+public enum ColorEditingMode
 {
-  // Cyotek Color Picker controls library
-  // Copyright © 2013-2017 Cyotek Ltd.
-  // http://cyotek.com/blog/tag/colorpicker
-
-  // Licensed under the MIT License. See license.txt for the full text.
-
-  // If you use this code in your applications, donations or attribution are welcome
+  /// <summary>
+  /// None. No editing is allowed.
+  /// </summary>
+  None,
 
   /// <summary>
-  /// Specifies the edit mode of a <see cref="ColorGrid" />.
+  /// Only custom colors can be edited.
   /// </summary>
-  public enum ColorEditingMode
-  {
-    /// <summary>
-    /// None. No editing is allowed.
-    /// </summary>
-    None,
+  CustomOnly,
 
-    /// <summary>
-    /// Only custom colors can be edited.
-    /// </summary>
-    CustomOnly,
-
-    /// <summary>
-    /// Custom or standard colors can be edited.
-    /// </summary>
-    Both
-  }
+  /// <summary>
+  /// Custom or standard colors can be edited.
+  /// </summary>
+  Both
 }
