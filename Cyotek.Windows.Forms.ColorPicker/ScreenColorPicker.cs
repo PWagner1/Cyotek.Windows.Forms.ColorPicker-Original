@@ -60,6 +60,8 @@ public class ScreenColorPicker : Control, IColorEditor
 
   private int _zoom;
 
+  private IWindowsFormsEditorService _editorService;
+
   #endregion Private Fields
 
   #region Public Constructors
@@ -78,6 +80,21 @@ public class ScreenColorPicker : Control, IColorEditor
     TabIndex = 0;
     _showGrid = true;
     _gridColor = SystemColors.ControlDark;
+    _editorService = null;
+  }
+
+  public ScreenColorPicker(IWindowsFormsEditorService service)
+  {
+    SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
+    SetStyle(ControlStyles.Selectable | ControlStyles.StandardClick | ControlStyles.StandardDoubleClick, false);
+    Zoom = 8;
+    Color = Color.Empty;
+    ShowTextWithSnapshot = false;
+    TabStop = false;
+    TabIndex = 0;
+    ShowGrid = true;
+    GridColor = SystemColors.ControlDark;
+    _editorService = service;
   }
 
   #endregion Public Constructors
@@ -379,6 +396,12 @@ public class ScreenColorPicker : Control, IColorEditor
     Cursor.Current = Cursors.Default;
     _isCapturing = false;
     Invalidate();
+
+    if (_editorService != null)
+    {
+      _editorService.CloseDropDown();
+    }
+
     _lastUpdate = Point.Empty;
 
     OnSelected(EventArgs.Empty);
