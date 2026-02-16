@@ -9,53 +9,46 @@
 // Found this code useful?
 // https://www.cyotek.com/contribute
 
-namespace Cyotek.Windows.Forms
+namespace Cyotek.Windows.Forms;
+
+internal static class ResourceManager
 {
-  internal static class ResourceManager
+  #region Public Properties
+
+  public static Image CellBackground => GetResourceImage("cellbackground.png");
+
+  public static Cursor EyeDropper => GetResourceCursor("eyedropper.cur");
+
+  public static Image LoadPalette => GetResourceImage("palette-load.png");
+
+  public static Image SavePalette => GetResourceImage("palette-save.png");
+
+  public static Image ScreenPicker => GetResourceImage("eyedropper.png");
+
+  #endregion Public Properties
+
+  #region Private Methods
+
+  private static Cursor GetResourceCursor(string name) => new(GetResourceStream(name));
+
+  private static Icon GetResourceIcon(string name) => new(GetResourceStream(name));
+
+  private static Bitmap GetResourceImage(string name) => new(GetResourceStream(name));
+
+  private static Stream GetResourceStream(string name)
   {
-    #region Public Properties
+    var type = typeof(ResourceManager);
+    var assembly = type.Assembly;
+    var resourceName = type.Namespace + ".Resources." + name;
+    var stream = assembly.GetManifestResourceStream(resourceName);
 
-    public static Image CellBackground => ResourceManager.GetResourceImage("cellbackground.png");
-
-    public static Cursor EyeDropper => ResourceManager.GetResourceCursor("eyedropper.cur");
-
-    public static Image LoadPalette => ResourceManager.GetResourceImage("palette-load.png");
-
-    public static Image SavePalette => ResourceManager.GetResourceImage("palette-save.png");
-
-    public static Image ScreenPicker => ResourceManager.GetResourceImage("eyedropper.png");
-
-    #endregion Public Properties
-
-    #region Private Methods
-
-    private static Cursor GetResourceCursor(string name) => new(ResourceManager.GetResourceStream(name));
-
-    private static Icon GetResourceIcon(string name) => new(ResourceManager.GetResourceStream(name));
-
-    private static Bitmap GetResourceImage(string name) => new(ResourceManager.GetResourceStream(name));
-
-    private static Stream GetResourceStream(string name)
+    if (stream == null)
     {
-      Type type;
-      Assembly assembly;
-      string resourceName;
-      Stream stream;
-
-      type = typeof(ResourceManager);
-      assembly = type.Assembly;
-      resourceName = type.Namespace + ".Resources." + name;
-      stream = assembly.GetManifestResourceStream(resourceName);
-
-      if (stream == null)
-      {
-        throw new ArgumentException(string.Format("Cannot find resource '{0}'.", resourceName));
-      }
-
-      return stream;
+      throw new ArgumentException($"Cannot find resource '{resourceName}'.");
     }
 
-    #endregion Private Methods
+    return stream;
   }
+
+  #endregion Private Methods
 }
-;

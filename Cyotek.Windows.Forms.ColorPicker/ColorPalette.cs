@@ -1,27 +1,25 @@
-﻿namespace Cyotek.Windows.Forms
+namespace Cyotek.Windows.Forms;
+// Cyotek Color Picker controls library
+// Copyright © 2013-2017 Cyotek Ltd.
+// http://cyotek.com/blog/tag/colorpicker
+
+// Licensed under the MIT License. See license.txt for the full text.
+
+// If you use this code in your applications, donations or attribution are welcome
+
+public enum ColorPalette
 {
-  // Cyotek Color Picker controls library
-  // Copyright © 2013-2017 Cyotek Ltd.
-  // http://cyotek.com/blog/tag/colorpicker
+  None,
 
-  // Licensed under the MIT License. See license.txt for the full text.
+  Named,
 
-  // If you use this code in your applications, donations or attribution are welcome
+  Office2010,
 
-  public enum ColorPalette
-  {
-    None,
+  Paint,
 
-    Named,
+  Standard,
 
-    Office2010,
+  WebSafe,
 
-    Paint,
-
-    Standard,
-
-    WebSafe,
-
-    Standard256
-  }
+  Standard256
 }

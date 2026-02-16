@@ -12,6 +12,7 @@
 using System.Drawing;
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Cyotek.Windows.Forms.ColorPicker.Tests
 {
@@ -36,7 +37,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.CanRead;
 
       // assert
-      Assert.IsTrue(actual);
+      ClassicAssert.IsTrue(actual);
     }
 
     [Test]
@@ -52,7 +53,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       actual = target.CanWrite;
 
       // assert
-      Assert.IsTrue(actual);
+      ClassicAssert.IsTrue(actual);
     }
 
     [Test]
@@ -77,7 +78,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       }
 
       // assert
-      Assert.AreEqual(expected, actual);
+      ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -95,7 +96,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
       File.Delete(workFileName);
 
       // assert
-      Assert.IsInstanceOf<AdobePhotoshopColorSwatchSerializer>(actual);
+      ClassicAssert.IsInstanceOf<AdobePhotoshopColorSwatchSerializer>(actual);
     }
 
     [Test]
@@ -127,7 +128,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Tests
 
     private void AssertNear(ColorCollection expected, ColorCollection actual)
     {
-      Assert.AreEqual(expected.Count, actual.Count);
+      ClassicAssert.AreEqual(expected.Count, actual.Count);
 
       for (int i = 0; i < actual.Count; i++)
       {

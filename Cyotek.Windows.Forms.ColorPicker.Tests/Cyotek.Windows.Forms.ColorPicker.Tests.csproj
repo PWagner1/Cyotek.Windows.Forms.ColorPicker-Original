@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net48;net35;net40;net452;net462;net472;net5.0-windows;netcoreapp3.1;net5.0-windows;net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
+		<!-- NUnit 4.x supports .NET Framework 4.6.2+ and .NET 6.0+ only -->
+		<TargetFrameworks>net462;net47;net471;net472;net48;net481;net8.0-windows;net9.0-windows;net10.0-windows;net11.0-windows</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -21,13 +23,15 @@
 
 	<PropertyGroup>
 		<!-- Temporary -->
-		<NoWarn>1701;1702;612;618</NoWarn>
+		<NoWarn>1701;1702;612;618;CA1416</NoWarn>
+		<!-- Allow Test.Sdk to run on older TFMs (net5.0-windows, net6.0-windows, net7.0-windows, netcoreapp3.1) -->
+		<SuppressTfmSupportBuildErrors>true</SuppressTfmSupportBuildErrors>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NUnit" Version="3.13.2" />
-		<PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+		<PackageReference Include="NUnit" Version="4.4.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="6.1.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -93,12 +97,5 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-
-	<PropertyGroup>
-		<!-- https://github.com/dotnet/msbuild/issues/1333#issuecomment-296346352 -->
-		<FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
-		<!-- https://github.com/dotnet/msbuild/issues/5985#issuecomment-752735876 -->
-		<AutomaticallyUseReferenceAssemblyPackages Condition=" '$(TargetFramework)' == 'net35' ">false</AutomaticallyUseReferenceAssemblyPackages>
-	</PropertyGroup>
 
 </Project>
